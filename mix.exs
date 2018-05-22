@@ -35,7 +35,7 @@ defmodule EctoLoggerJson.Mixfile do
       {:earmark, "~> 1.0", only: [:dev]},
       {:ex_doc, "~> 0.14", only: [:dev]},
       {:excoveralls, "~> 0.6", only: [:test]},
-      {:poison, "~> 1.5 or ~> 2.0 or ~> 3.0"}
+      {:jason, "~> 1.0"}
     ]
   end
 

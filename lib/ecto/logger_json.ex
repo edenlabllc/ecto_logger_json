@@ -44,7 +44,7 @@ defmodule Ecto.LoggerJSON do
           "query_time" => query_time,
           "queue_time" => queue_time
         }
-        |> Poison.encode!()
+        |> Jason.encode!()
       end)
 
     entry
@@ -75,7 +75,7 @@ defmodule Ecto.LoggerJSON do
           "query_time" => query_time,
           "queue_time" => queue_time
         }
-        |> Poison.encode!()
+        |> Jason.encode!()
       end)
 
     entry

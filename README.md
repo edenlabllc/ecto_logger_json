@@ -6,7 +6,7 @@
 Log ecto data as JSON with slightly different fields
 
 ## Dependencies
-  * Poison
+  * Jason
   * Ecto
 
 ## Installation

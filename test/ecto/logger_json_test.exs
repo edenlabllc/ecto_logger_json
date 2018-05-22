@@ -12,7 +12,7 @@ defmodule Ecto.LoggerJSONTest do
     |> String.replace("\e[36m", "")
     |> String.replace("\e[22m", "")
     |> String.replace("\n\e[0m", "")
-    |> Poison.decode!()
+    |> Jason.decode!()
   end
 
   describe "&log/1" do
