@@ -51,7 +51,7 @@ defmodule Ecto.LoggerJSON do
           "duration" => Float.round(query_time + decode_time + queue_time, 3),
           "log_type" => "persistence",
           "request_id" => Logger.metadata()[:request_id],
-          "query" => query,
+          "query" => to_string(query),
           "query_time" => query_time,
           "queue_time" => queue_time,
           "params" => Enum.map(params, &param_to_string/1)
@@ -84,7 +84,7 @@ defmodule Ecto.LoggerJSON do
           "duration" => Float.round(query_time + decode_time + queue_time, 3),
           "log_type" => "persistence",
           "request_id" => Logger.metadata()[:request_id],
-          "query" => query,
+          "query" => to_string(query),
           "query_time" => query_time,
           "queue_time" => queue_time,
           "params" => Enum.map(params, &param_to_string/1)
