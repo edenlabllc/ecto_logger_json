@@ -132,7 +132,7 @@ defmodule Ecto.LoggerJSON do
   end
 
   defp maybe_truncate(value) when is_binary(value) do
-    case truncate_strings?() do
+    case truncate_params?() do
       true -> String.slice(value, 0, 100)
       _ -> value
     end
@@ -140,5 +140,5 @@ defmodule Ecto.LoggerJSON do
 
   defp maybe_truncate(value), do: value
 
-  defp truncate_strings?, do: Application.get_env(:ecto_logger_json, :truncate_strings, false)
+  defp truncate_params?, do: Application.get_env(:ecto_logger_json, :truncate_params, false)
 end

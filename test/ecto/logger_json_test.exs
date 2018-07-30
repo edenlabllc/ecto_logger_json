@@ -121,22 +121,22 @@ defmodule Ecto.LoggerJSONTest do
       assert log["request_id"] == nil
     end
 
-    test "truncate disabled on long strings" do
+    test "truncate params disabled" do
       long_string = String.duplicate("Long Value", 100)
-      entry = %{params: [long_string]}
+
+      entry = %{
+        query_time: nil,
+        decode_time: nil,
+        queue_time: nil,
+        query:
+          "SELECT l0.\"id\", l0.\"reaction_id\", l0.\"inserted_at\", l0.\"updated_at\" FROM \"last_processed_reactions\"",
+        params: [long_string]
+      }
+
       log = get_log(fn -> Ecto.LoggerJSON.log(entry, :info) end)
 
       assert [value] = log["params"]
-      assert String.length(value) == String.length(long_string)
-    end
-
-    test "truncate enabled on long strings" do
-      Application.put_env(:ecto_logger_json, :truncate_strings, true)
-      entry = %{params: [String.duplicate("Long Value", 100)]}
-      log = get_log(fn -> Ecto.LoggerJSON.log(entry, :info) end)
-
-      assert [truncated_value] = log["params"]
-      assert String.length(truncated_value) == 100
+      assert String.length(long_string) == String.length(value)
     end
   end
 end
