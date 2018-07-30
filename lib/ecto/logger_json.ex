@@ -87,7 +87,7 @@ defmodule Ecto.LoggerJSON do
           "query" => to_string(query),
           "query_time" => query_time,
           "queue_time" => queue_time,
-          "params" => Enum.map(params, &param_to_string/1)
+          "params" => Enum.map(params, &(&1 |> param_to_string() |> maybe_truncate()))
         }
         |> Poison.encode!()
       end)
@@ -130,4 +130,15 @@ defmodule Ecto.LoggerJSON do
     ms = System.convert_time_unit(time, :native, :micro_seconds) / 1000
     Float.round(ms, 3)
   end
+
+  defp maybe_truncate(value) when is_binary(value) do
+    case truncate_strings?() do
+      true -> String.slice(value, 0, 100)
+      _ -> value
+    end
+  end
+
+  defp maybe_truncate(value), do: value
+
+  defp truncate_strings?, do: Application.get_env(:ecto_logger_json, :truncate_strings, false)
 end
