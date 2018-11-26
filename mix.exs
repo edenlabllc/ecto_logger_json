@@ -35,7 +35,7 @@ defmodule EctoLoggerJson.Mixfile do
 
   defp deps do
     [
-      {:ecto, "~> 2.1"},
+      {:ecto, "~> 2.1 or ~> 3.0"},
       {:credo, "~> 0.5", only: [:dev]},
       {:dialyxir, "~> 0.4", only: [:dev]},
       {:earmark, "~> 1.0", only: [:dev]},
