@@ -98,7 +98,7 @@ defmodule Ecto.LoggerJSON do
   ## Helpers
 
   def param_to_string({{_, _, _} = date, {h, m, s, _}}) do
-    Ecto.DateTime.from_erl({date, {h, m, s}})
+    NaiveDateTime.from_erl!({date, {h, m, s}})
   end
 
   def param_to_string({_, _, _} = date) do
